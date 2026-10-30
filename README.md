@@ -34,3 +34,33 @@
 -单元测试
 ## 总结
 本项目是后端入门练手项目，熟悉SpringBoot开发流程，掌握MyBatis操作数据库、JWT身份认证、密码安全加密、全局异常处理等企业开发基础能力。
+## 环境依赖
+- JDK：17 / JDK 11（根据SpringBoot版本选择）
+- Maven：3.6+
+- MySQL：8.0
+- IDE：IDEA
+## 数据库准备
+1. 创建数据库（数据库名可自行修改，注意同步yml配置）
+create database in not exisits user_management default character set utfmb4 collate utf8mb4_general_ci
+2.创建用户表
+CREATE TABLE 'user' (
+'id' bigint primary key auto_increment comment '主键ID',
+'username' varchar(50) not null comment '用户名'
+'password' varchar(100) not null comment 'BCrypt加密后的密码'
+'deleted' tinyint default 0 comment '逻辑删除标识：0未删除，1已删除'
+'create_time' datetime default current_timestamp comment '创建时间'
+'update_time'  datetime default curent_timestamp on update current_itmestamp comment '更新时间'
+3.修改配置文件
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/user_management?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password:
+##  启动项目
+1. IDEA导入项目，等待Maven依赖下载完成
+​2. 找到项目启动类，右键运行
+​3. 项目启动成功后，访问 Knife4j 接口文档地址：http://127.0.0.1:8080/doc.html
+## 接口测试流程
+1. 调用  /user/add  注册用户（密码会自动BCrypt加密存入数据库）
+2. 调用  /user/login  获取 JWT Token
+3. 在Knife4j页面配置全局Token，之后即可调用需要鉴权的接口（修改、删除、分页查询）
