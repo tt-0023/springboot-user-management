@@ -19,3 +19,18 @@
 - 分页：PageHelper
 - 接口文档：Knife4j(Swagger)
 - 构建工具：Maven
+## 接口说明
+-POST /user/add 新增用户
+-POST /user/login 用户登录，放回JWT
+-put /user/update 修改用户信息（需token)
+-DELETE /user/delete/{id} 逻辑删除用户（需token）
+-GET /user/page 用户分页查询
+## 后续待完善功能
+-Redis实现JWT黑名单，支持主动退出登录
+-角色权限控制（管理员/普通用户）
+-文件上传（头像上传)
+-密码重置功能
+-参数校验@valid +自定义校验提示
+-单元测试
+## 总结
+本项目是后端入门练手项目，熟悉SpringBoot开发流程，掌握MyBatis操作数据库、JWT身份认证、密码安全加密、全局异常处理等企业开发基础能力。
